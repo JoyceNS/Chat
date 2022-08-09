@@ -1,0 +1,59 @@
+----- README -----
+
+Chat project is a web api made with ASP.NET Core (C#) using MongoDB. Steps to install dependencies and run the api from the terminal are below.
+
+-- Create MongoDB database --
+
+Prerequisites for DB creation:
+MongoDB
+MongoDB shell
+
+Documentation for both can be found: 
+https://docs.mongodb.com/manual/tutorial/install-mongodb-on-windows/
+https://www.mongodb.com/docs/manual/tutorial/install-mongodb-on-os-x/
+https://www.mongodb.com/docs/manual/administration/install-on-linux/
+
+https://www.mongodb.com/docs/mongodb-shell/install/
+
+Choose a directory for storing the data. A suggestion for Windows could be: C:\ChatData
+Open a command shell and run: mongod --dbpath <data_directory_path>
+The bracketed portion should be replaced by the previously created directory.
+
+Open another command shell and now run: mongosh
+Run the following command: use Messages
+This creates the databse if it didn't previously exist.
+
+-- Define MongoDB collection --
+
+Next run the following command: db.createCollection('Messages')
+A result will then be displayed 
+
+Next, define the schema for the collection. Enter the following into the mongosh shell:
+
+db.Messages.insertMany([{ "Sender": "Bob", "Recipient": "John", "MessageTxt": "hi hows it going", "DateSent": "2010-10-28" }, { "Sender": "John", "Recipient": "Bob", "MessageTxt": "hello world","DateSent": "2022-08-05" }])
+
+To display: db.Messages.find().pretty()
+
+-- Running Chat API through command line --
+
+Prerequisites:
+.NET
+
+Docoumentation:
+https://docs.microsoft.com/en-us/dotnet/core/install/
+
+Open command line and navigate to the Chat repository. Enter the following: dotnet run
+Project should build and run. Api endpoints can now be hit from another command line terminal, or optionally, Postman or other api testing tools.
+
+The default api url is: https://localhost:7032/api/messages
+
+There are three main endpoints of the chat api: /send, /all-chat, /recent-chat.
+
+/send - saves mesage to the message db. Requires an input for sender, recipient, and msg text
+/all-chat - returns all messages in the collection in json format
+/recent-chat - returns all recent messages matching the input of sender and recipient in json format
+
+Test cases and populating the db are included in the test case file. With future updates/more time, checking and error handling would be added as well as a User model to account for senders/recipient with the same names.
+
+
+

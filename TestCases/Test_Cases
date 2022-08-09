@@ -1,0 +1,51 @@
+Test Cases
+
+1) First to populate the db and test the /send 
+
+Open another shell seperate from where the api is running.
+
+Curl commands to test:
+
+curl --location --request POST "https://localhost:7032/api/messages/send" -H "Content-Type: application/json" -d "{\"sender\" : \"Sienna\",\"recipient\" : \"Gregorio\",\"txt\" : \"zup\"}"
+
+curl --location --request POST "https://localhost:7032/api/messages/send" -H "Content-Type: application/json" -d "{\"sender\" : \"Fergus\",\"recipient\" : \"Watse\",\"txt\" : \"sup\"}"
+
+curl --location --request POST "https://localhost:7032/api/messages/send" -H "Content-Type: application/json" -d "{\"sender\" : \"Petra\",\"recipient\" : \"Dan\",\"txt\" : \"hello world\"}"
+
+curl --location --request POST "https://localhost:7032/api/messages/send" -H "Content-Type: application/json" -d "{\"sender\" : \"Umut\",\"recipient\" : \"Archembald\",\"txt\" : \"hullo whirled\"}"
+
+curl --location --request POST "https://localhost:7032/api/messages/send" -H "Content-Type: application/json" -d "{\"sender\" : \"Prachi\",\"recipient\" : \"Zeynab\",\"txt\" : \"hola pueblo\"}"
+
+curl --location --request POST "https://localhost:7032/api/messages/send" -H "Content-Type: application/json" -d "{\"sender\" : \"Felip\",\"recipient\" : \"Sharmaine\",\"txt\" : \"hi how are you\"}"
+
+curl --location --request POST "https://localhost:7032/api/messages/send" -H "Content-Type: application/json" -d "{\"sender\" : \"Isidora\",\"recipient\" : \"Michelangelo\",\"txt\" : \"como estas\"}"
+
+curl --location --request POST "https://localhost:7032/api/messages/send" -H "Content-Type: application/json" -d "{\"sender\" : \"Govinda\",\"recipient\" : \"Cornelius\",\"txt\" : \"doing good\"}"
+
+curl --location --request POST "https://localhost:7032/api/messages/send" -H "Content-Type: application/json" -d "{\"sender\" : \"Dilip\",\"recipient\" : \"Nicola\",\"txt\" : \"hi i am doing Swell, how are things with you\"}"
+
+curl --location --request POST "https://localhost:7032/api/messages/send" -H "Content-Type: application/json" -d "{\"sender\" : \"Ivan\",\"recipient\" : \"Tautvydas\",\"txt\" : \"cant believe its not butter\"}"
+
+curl --location --request POST "https://localhost:7032/api/messages/send" -H "Content-Type: application/json" -d "{\"sender\" : \"Ansigar\",\"recipient\" : \"Mille\",\"txt\" : \"wanted 2 chk on u lolz\"}"
+
+2) Testing the recent-chat
+
+Any of the previous sender/recipient pairs from previous commands can be tested here. Following are some examples:
+
+curl --location --request GET "https://localhost:7032/api/messages/recent-chat?sender=Ansigar&recipient=Mille"
+
+curl --location --request GET "https://localhost:7032/api/messages/recent-chat?sender=Dilip&recipient=Nicola"
+
+curl --location --request GET "https://localhost:7032/api/messages/recent-chat?sender=Petra&recipient=Dan"
+
+
+In the case where the sender/recipient do not match, nothing will be returned. This can be tested with any sender/recipient pair that does not exist.
+
+curl --location --request GET "https://localhost:7032/api/messages/recent-chat?sender=Ansigar&recipient=Ansigar"
+
+3)Testing all-chat
+
+This should return all the previously sent messages.
+
+Curl command:
+curl --location --request GET "https://localhost:7032/api/messages/all-chat"
